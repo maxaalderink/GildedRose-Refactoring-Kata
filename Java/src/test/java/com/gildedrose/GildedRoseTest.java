@@ -85,9 +85,9 @@ class GildedRoseTest {
 
     @Test
     void updateSulfuras_QualityAndSellInDoesNotChange() {
-        Item item = new Item("Sulfuras, Hand of Ragnaros", 1, 10);
+        Item item = new Item("Sulfuras, Hand of Ragnaros", 1, 80);
 
-        testUpdateQualitySingleItem(item, 1, 10);
+        testUpdateQualitySingleItem(item, 1, 80);
     }
 
     @Test
