@@ -8,8 +8,8 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            final ItemWrapper itemWrapper = ItemWrapperFactory.create(items[i]);
+        for (Item item : items) {
+            final ItemWrapper itemWrapper = ItemWrapperFactory.create(item);
             if (!itemWrapper.getName().equals("Aged Brie")
                     && !itemWrapper.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
                 if (itemWrapper.getQuality() > 0) {
