@@ -8,136 +8,114 @@ class GildedRoseTest {
 
     @Test
     void updateDefault_QualityIsZero_QualityDoesNotDecreaseBellowZero() {
-        Item[] items = new Item[] { new Item("default", 0, 0) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(-1, app.items[0].sellIn);
-        assertEquals(0, app.items[0].quality);
+        Item item = new Item("default", 0, 0);
+
+        testUpdateQualitySingleItem(item, -1, 0);
     }
 
     @Test
     void updateDefault_SellInIsAboveZero_QualityDecrementsOne() {
-        Item[] items = new Item[] { new Item("default", 1, 10) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(0, app.items[0].sellIn);
-        assertEquals(9, app.items[0].quality);
+        Item item = new Item("default", 1, 10);
+
+        testUpdateQualitySingleItem(item, 0, 9);
     }
 
     @Test
     void updateDefault_SellInIsZeroOrBellow_QualityDecrementsTwo() {
-        Item[] items = new Item[] { new Item("default", 0, 10) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(-1, app.items[0].sellIn);
-        assertEquals(8, app.items[0].quality);
+        Item item = new Item("default", 0, 10);
+
+        testUpdateQualitySingleItem(item, -1, 8);
     }
 
     @Test
     void updateAgedBrie_SellInIsAboveZero_QualityIncrementsOne() {
-        Item[] items = new Item[] { new Item("Aged Brie", 1, 10) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(0, app.items[0].sellIn);
-        assertEquals(11, app.items[0].quality);
+        Item item = new Item("Aged Brie", 1, 10);
+
+        testUpdateQualitySingleItem(item, 0, 11);
     }
 
     @Test
     void updateAgedBrie_QualityIsFifty_QualityDoesNotIncreaseAboveFifty() {
-        Item[] items = new Item[] { new Item("Aged Brie", 0, 50) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(-1, app.items[0].sellIn);
-        assertEquals(50, app.items[0].quality);
+        Item item = new Item("Aged Brie", 0, 50);
+
+        testUpdateQualitySingleItem(item, -1, 50);
     }
 
     @Test
     void updateBackstagePass_SellInIsAboveTen_QualityIncrementsOne() {
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 20, 10) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(19, app.items[0].sellIn);
-        assertEquals(11, app.items[0].quality);
+        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 20, 10);
+
+        testUpdateQualitySingleItem(item, 19, 11);
     }
 
     @Test
     void updateBackstagePass_SellInIsBelowTenAndAboveFive_QualityIncrementsTwo() {
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 7, 10) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(6, app.items[0].sellIn);
-        assertEquals(12, app.items[0].quality);
+        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 7, 10);
+
+        testUpdateQualitySingleItem(item, 6, 12);
     }
 
     @Test
     void updateBackstagePass_SellInIsBelowFiveAndAboveZero_QualityIncrementsThree() {
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 3, 10) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(2, app.items[0].sellIn);
-        assertEquals(13, app.items[0].quality);
+        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 3, 10);
+
+        testUpdateQualitySingleItem(item, 2, 13);
     }
 
     @Test
     void updateBackstagePass_SellInIsAboveZeroAndQualityIsFifty_QualityDoesNotIncreaseAboveFifty() {
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 20, 50) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(19, app.items[0].sellIn);
-        assertEquals(50, app.items[0].quality);
+        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 20, 50);
+
+        testUpdateQualitySingleItem(item, 19, 50);
     }
 
     @Test
     void updateBackstagePass_SellInIsZero_QualityIsZero() {
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(-1, app.items[0].sellIn);
-        assertEquals(0, app.items[0].quality);
+        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10);
+
+        testUpdateQualitySingleItem(item, -1, 0);
     }
 
     @Test
     void updateBackstagePass_SellInIsZero_QualityDoesNotDecreaseBellowZero() {
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 0, 0) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(-1, app.items[0].sellIn);
-        assertEquals(0, app.items[0].quality);
+        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 0);
+
+        testUpdateQualitySingleItem(item, -1, 0);
     }
 
     @Test
     void updateSulfuras_QualityAndSellInDoesNotChange() {
-        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 1, 10) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(1, app.items[0].sellIn);
-        assertEquals(10, app.items[0].quality);
+        Item item = new Item("Sulfuras, Hand of Ragnaros", 1, 10);
+
+        testUpdateQualitySingleItem(item, 1, 10);
     }
 
     @Test
     void updateConjured_QualityIsZero_QualityDoesNotDecreaseBellowZero() {
-        Item[] items = new Item[] { new Item("Conjured Mana Cake", 0, 0) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(-1, app.items[0].sellIn);
-        assertEquals(0, app.items[0].quality);
+        Item item = new Item("Conjured Mana Cake", 0, 0);
+
+        testUpdateQualitySingleItem(item, -1, 0);
     }
 
     @Test
     void updateConjured_SellInIsAboveZero_QualityDecrementsTwo() {
-        Item[] items = new Item[] { new Item("Conjured Mana Cake", 1, 10) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(0, app.items[0].sellIn);
-        assertEquals(8, app.items[0].quality);
+        Item item = new Item("Conjured Mana Cake", 1, 10);
+
+        testUpdateQualitySingleItem(item, 0, 8);
     }
 
     @Test
     void updateConjured_SellInIsZeroOrBellow_QualityDecrementsFour() {
-        Item[] items = new Item[] { new Item("Conjured Mana Cake", 0, 10) };
+        Item item = new Item("Conjured Mana Cake", 0, 10);
+
+        testUpdateQualitySingleItem(item, -1, 6);
+    }
+
+    private void testUpdateQualitySingleItem(Item item, int expectedSellIn, int expectedQuality) {
+        Item[] items = new Item[]{item};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals(-1, app.items[0].sellIn);
-        assertEquals(6, app.items[0].quality);
+        assertEquals(expectedSellIn, app.items[0].sellIn);
+        assertEquals(expectedQuality, app.items[0].quality);
     }
 }
