@@ -12,10 +12,6 @@ public class ItemWrapper {
         this.qualityUpdateBehaviour = qualityUpdateBehaviour;
     }
 
-    public String getName() {
-        return this.item.name;
-    }
-
     public int getSellIn() {
         return this.item.sellIn;
     }
