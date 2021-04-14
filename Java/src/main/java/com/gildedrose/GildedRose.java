@@ -22,16 +22,12 @@ class GildedRose {
                     itemWrapper.setQuality(itemWrapper.getQuality() + 1);
 
                     if (itemWrapper.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (itemWrapper.getSellIn() < 11) {
-                            if (itemWrapper.getQuality() < 50) {
+                        if (itemWrapper.getSellIn() < 11 && itemWrapper.getQuality() < 50) {
                                 itemWrapper.setQuality(itemWrapper.getQuality() + 1);
                             }
-                        }
 
-                        if (itemWrapper.getSellIn() < 6) {
-                            if (itemWrapper.getQuality() < 50) {
-                                itemWrapper.setQuality(itemWrapper.getQuality() + 1);
-                            }
+                        if (itemWrapper.getSellIn() < 6 && itemWrapper.getQuality() < 50) {
+                            itemWrapper.setQuality(itemWrapper.getQuality() + 1);
                         }
                     }
                 }
