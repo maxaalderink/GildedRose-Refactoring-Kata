@@ -13,10 +13,10 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items) {
             final ItemWrapper itemWrapper = ItemWrapperFactory.create(item);
-            if (!itemWrapper.getName().equals("Aged Brie")
-                    && !itemWrapper.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
+            if (!itemWrapper.getQualityUpdateBehaviour().equals(QualityUpdateBehaviour.INCREASING)
+                    && !itemWrapper.getQualityUpdateBehaviour().equals(QualityUpdateBehaviour.INCREASING_UNTIL_SELL_IN)) {
                 if (itemWrapper.getQuality() > MINIMUM_QUALITY) {
-                    if (!itemWrapper.getName().equals("Sulfuras, Hand of Ragnaros")) {
+                    if (!itemWrapper.getQualityUpdateBehaviour().equals(QualityUpdateBehaviour.STATIC)) {
                         itemWrapper.setQuality(itemWrapper.getQuality() - 1);
                     }
                 }
@@ -24,7 +24,7 @@ class GildedRose {
                 if (itemWrapper.getQuality() < MAXIMUM_QUALITY) {
                     itemWrapper.setQuality(itemWrapper.getQuality() + 1);
 
-                    if (itemWrapper.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
+                    if (itemWrapper.getQualityUpdateBehaviour().equals(QualityUpdateBehaviour.INCREASING_UNTIL_SELL_IN)) {
                         if (itemWrapper.getSellIn() < 11 && itemWrapper.getQuality() < MAXIMUM_QUALITY) {
                                 itemWrapper.setQuality(itemWrapper.getQuality() + 1);
                             }
@@ -41,10 +41,10 @@ class GildedRose {
             }
 
             if (itemWrapper.getSellIn() < 0) {
-                if (!itemWrapper.getName().equals("Aged Brie")) {
-                    if (!itemWrapper.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
+                if (!itemWrapper.getQualityUpdateBehaviour().equals(QualityUpdateBehaviour.INCREASING)) {
+                    if (!itemWrapper.getQualityUpdateBehaviour().equals(QualityUpdateBehaviour.INCREASING_UNTIL_SELL_IN)) {
                         if (itemWrapper.getQuality() > MINIMUM_QUALITY) {
-                            if (!itemWrapper.getName().equals("Sulfuras, Hand of Ragnaros")) {
+                            if (!itemWrapper.getQualityUpdateBehaviour().equals(QualityUpdateBehaviour.STATIC)) {
                                 itemWrapper.setQuality(itemWrapper.getQuality() - 1);
                             }
                         }
