@@ -50,7 +50,7 @@ class GildedRose {
                             }
                         }
                     } else {
-                        itemWrapper.setQuality(itemWrapper.getQuality() - itemWrapper.getQuality());
+                        itemWrapper.setQuality(0);
                     }
                 } else {
                     if (itemWrapper.getQuality() < 50) {
