@@ -4,10 +4,12 @@ public class ItemWrapper {
 
     private final Item item;
     private final SellInUpdateBehaviour sellInUpdateBehaviour;
+    private final QualityUpdateBehaviour qualityUpdateBehaviour;
 
-    public ItemWrapper(Item item, SellInUpdateBehaviour sellInUpdateBehaviour) {
+    public ItemWrapper(Item item, SellInUpdateBehaviour sellInUpdateBehaviour, QualityUpdateBehaviour qualityUpdateBehaviour) {
         this.item = item;
         this.sellInUpdateBehaviour = sellInUpdateBehaviour;
+        this.qualityUpdateBehaviour = qualityUpdateBehaviour;
     }
 
     public String getName() {
@@ -32,5 +34,9 @@ public class ItemWrapper {
 
     public SellInUpdateBehaviour getSellInUpdateBehaviour() {
         return this.sellInUpdateBehaviour;
+    }
+
+    public QualityUpdateBehaviour getQualityUpdateBehaviour() {
+        return this.qualityUpdateBehaviour;
     }
 }
