@@ -3,9 +3,11 @@ package com.gildedrose;
 public class ItemWrapper {
 
     private final Item item;
+    private final SellInUpdateBehaviour sellInUpdateBehaviour;
 
-    public ItemWrapper(Item item) {
+    public ItemWrapper(Item item, SellInUpdateBehaviour sellInUpdateBehaviour) {
         this.item = item;
+        this.sellInUpdateBehaviour = sellInUpdateBehaviour;
     }
 
     public String getName() {
@@ -26,5 +28,9 @@ public class ItemWrapper {
 
     public void setQuality(int quality) {
         this.item.quality = quality;
+    }
+
+    public SellInUpdateBehaviour getSellInUpdateBehaviour() {
+        return this.sellInUpdateBehaviour;
     }
 }
