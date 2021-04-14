@@ -45,8 +45,9 @@ class GildedRose {
             case STATIC:
                 return getQualityDeltaStatic();
             case DEFAULT_DECREASING:
-            default:
                 return getQualityDeltaDefault(itemWrapper);
+            default:
+                throw new UnsupportedOperationException("QualityUpdateBehaviour '" + itemWrapper.getQualityUpdateBehaviour().name() + "' has not been implemented");
         }
     }
 
