@@ -4,5 +4,6 @@ public enum QualityUpdateBehaviour {
     DEFAULT_DECREASING,
     INCREASING,
     INCREASING_UNTIL_SELL_IN,
-    STATIC
+    STATIC,
+    DECREASING_DOUBLE_RATE
 }

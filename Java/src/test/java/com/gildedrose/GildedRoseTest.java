@@ -125,4 +125,34 @@ class GildedRoseTest {
         assertEquals(1, app.items[0].sellIn);
         assertEquals(10, app.items[0].quality);
     }
+
+    @Test
+    void updateConjured_QualityIsZero_QualityDoesNotDecreaseBellowZero() {
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", 0, 0) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Conjured Mana Cake", app.items[0].name);
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
+    void updateConjured_SellInIsAboveZero_QualityDecrementsTwo() {
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", 1, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Conjured Mana Cake", app.items[0].name);
+        assertEquals(0, app.items[0].sellIn);
+        assertEquals(8, app.items[0].quality);
+    }
+
+    @Test
+    void updateConjured_SellInIsZeroOrBellow_QualityDecrementsFour() {
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", 0, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Conjured Mana Cake", app.items[0].name);
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(6, app.items[0].quality);
+    }
 }
