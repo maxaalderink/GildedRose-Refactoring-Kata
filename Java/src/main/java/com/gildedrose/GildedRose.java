@@ -37,7 +37,7 @@ class GildedRose {
             }
 
             if (itemWrapper.getSellInUpdateBehaviour() == SellInUpdateBehaviour.DEFAULT_DECREASING) {
-                updateSellInDefault(itemWrapper);
+                itemWrapper.setSellIn(itemWrapper.getSellIn() + getSellInDeltaDefault());
             }
 
             if (itemWrapper.getSellIn() < 0) {
@@ -60,7 +60,7 @@ class GildedRose {
         }
     }
 
-    private void updateSellInDefault(ItemWrapper itemWrapper) {
-        itemWrapper.setSellIn(itemWrapper.getSellIn() - 1);
+    private int getSellInDeltaDefault() {
+        return -1;
     }
 }
