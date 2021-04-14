@@ -22,22 +22,7 @@ class GildedRose {
                 itemWrapper.setSellIn(itemWrapper.getSellIn() + getSellInDeltaDefault());
             }
 
-            int qualityDelta;
-            switch (itemWrapper.getQualityUpdateBehaviour()){
-                case INCREASING:
-                    qualityDelta = getQualityDeltaIncreasing();
-                    break;
-                case INCREASING_UNTIL_SELL_IN:
-                    qualityDelta = getQualityDeltaIncreasingUntillSellIn(itemWrapper);
-                    break;
-                case STATIC:
-                    qualityDelta = getQualityDeltaStatic();
-                    break;
-                case DEFAULT_DECREASING:
-                default:
-                    qualityDelta = getQualityDeltaDefault(itemWrapper);
-                    break;
-            }
+            int qualityDelta = getQualityDelta(itemWrapper);
             if (qualityDelta > 0) {
                 itemWrapper.setQuality(Math.min(MAXIMUM_QUALITY, item.quality + qualityDelta));
             }
@@ -49,6 +34,20 @@ class GildedRose {
 
     private int getSellInDeltaDefault() {
         return -1;
+    }
+
+    private int getQualityDelta(ItemWrapper itemWrapper) {
+        switch (itemWrapper.getQualityUpdateBehaviour()) {
+            case INCREASING:
+                return getQualityDeltaIncreasing();
+            case INCREASING_UNTIL_SELL_IN:
+                return getQualityDeltaIncreasingUntillSellIn(itemWrapper);
+            case STATIC:
+                return getQualityDeltaStatic();
+            case DEFAULT_DECREASING:
+            default:
+                return getQualityDeltaDefault(itemWrapper);
+        }
     }
 
     private int getQualityDeltaDefault(ItemWrapper itemWrapper) {
@@ -66,7 +65,7 @@ class GildedRose {
             return 2;
         } else if (itemWrapper.getSellIn() > ONE_DAY_AFTER) {
             return 3;
-        } else if (itemWrapper.getSellIn() == ONE_DAY_AFTER){
+        } else if (itemWrapper.getSellIn() == ONE_DAY_AFTER) {
             return -itemWrapper.getQuality();
         } else {
             return 0;
