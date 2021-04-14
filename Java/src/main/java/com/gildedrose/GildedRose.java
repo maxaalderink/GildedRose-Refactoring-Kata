@@ -44,6 +44,8 @@ class GildedRose {
                 return getQualityDeltaIncreasingUntillSellIn(itemWrapper);
             case STATIC:
                 return getQualityDeltaStatic();
+            case DECREASING_DOUBLE_RATE:
+                return getQualityDeltaDecreasingDoubleRate(itemWrapper);
             case DEFAULT_DECREASING:
                 return getQualityDeltaDefault(itemWrapper);
             default:
@@ -53,6 +55,10 @@ class GildedRose {
 
     private int getQualityDeltaDefault(ItemWrapper itemWrapper) {
         return itemWrapper.getSellIn() >= 0 ? -1 : -2;
+    }
+
+    private int getQualityDeltaDecreasingDoubleRate(ItemWrapper itemWrapper) {
+        return getQualityDeltaDefault(itemWrapper) * 2;
     }
 
     private int getQualityDeltaIncreasing() {
