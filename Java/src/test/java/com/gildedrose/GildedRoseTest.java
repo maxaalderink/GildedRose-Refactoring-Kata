@@ -57,6 +57,66 @@ class GildedRoseTest {
     }
 
     @Test
+    void updateBackstagePass_SellInIsAboveTen_QualityIncrementsOne() {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 20, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
+        assertEquals(19, app.items[0].sellIn);
+        assertEquals(11, app.items[0].quality);
+    }
+
+    @Test
+    void updateBackstagePass_SellInIsBelowTenAndAboveFive_QualityIncrementsTwo() {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 7, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
+        assertEquals(6, app.items[0].sellIn);
+        assertEquals(12, app.items[0].quality);
+    }
+
+    @Test
+    void updateBackstagePass_SellInIsBelowFiveAndAboveZero_QualityIncrementsThree() {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 3, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
+        assertEquals(2, app.items[0].sellIn);
+        assertEquals(13, app.items[0].quality);
+    }
+
+    @Test
+    void updateBackstagePass_SellInIsAboveZeroAndQualityIsFifty_QualityDoesNotIncreaseAboveFifty() {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 20, 50) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
+        assertEquals(19, app.items[0].sellIn);
+        assertEquals(50, app.items[0].quality);
+    }
+
+    @Test
+    void updateBackstagePass_SellInIsZero_QualityIsZero() {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
+    void updateBackstagePass_SellInIsZero_QualityDoesNotDecreaseBellowZero() {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 0, 0) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
     void updateSulfuras_QualityAndSellInDoesNotChange() {
         Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 1, 80) };
         GildedRose app = new GildedRose(items);
