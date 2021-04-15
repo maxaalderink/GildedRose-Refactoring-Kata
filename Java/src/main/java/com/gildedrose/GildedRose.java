@@ -24,10 +24,10 @@ class GildedRose {
 
             int qualityDelta = getQualityDelta(itemWrapper);
             if (qualityDelta > 0) {
-                itemWrapper.setQuality(Math.min(MAXIMUM_QUALITY, item.quality + qualityDelta));
+                itemWrapper.setQuality(Math.min(MAXIMUM_QUALITY, itemWrapper.getQuality() + qualityDelta));
             }
             if (qualityDelta < 0) {
-                itemWrapper.setQuality(Math.max(MINIMUM_QUALITY, item.quality + qualityDelta));
+                itemWrapper.setQuality(Math.max(MINIMUM_QUALITY, itemWrapper.getQuality() + qualityDelta));
             }
         }
     }
