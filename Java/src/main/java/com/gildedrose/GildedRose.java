@@ -37,7 +37,7 @@ class GildedRose {
             }
 
             if (!itemWrapper.getName().equals("Sulfuras, Hand of Ragnaros")) {
-                itemWrapper.setSellIn(itemWrapper.getSellIn() - 1);
+                itemWrapper.setSellIn(itemWrapper.getSellIn() + getSellInDeltaDefault());
             }
 
             if (itemWrapper.getSellIn() < 0) {
@@ -58,5 +58,9 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private int getSellInDeltaDefault() {
+        return -1;
     }
 }
