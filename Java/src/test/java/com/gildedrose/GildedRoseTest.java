@@ -14,52 +14,10 @@ class GildedRoseTest {
     }
 
     @Test
-    void updateDefault_SellInIsAboveZero_QualityDecrementsOne() {
-        Item item = new Item("default", 1, 10);
-
-        testUpdateQualitySingleItem(item, 0, 9);
-    }
-
-    @Test
-    void updateDefault_SellInIsZeroOrBellow_QualityDecrementsTwo() {
-        Item item = new Item("default", 0, 10);
-
-        testUpdateQualitySingleItem(item, -1, 8);
-    }
-
-    @Test
-    void updateAgedBrie_SellInIsAboveZero_QualityIncrementsOne() {
-        Item item = new Item("Aged Brie", 1, 10);
-
-        testUpdateQualitySingleItem(item, 0, 11);
-    }
-
-    @Test
     void updateAgedBrie_QualityIsFifty_QualityDoesNotIncreaseAboveFifty() {
         Item item = new Item("Aged Brie", 0, 50);
 
         testUpdateQualitySingleItem(item, -1, 50);
-    }
-
-    @Test
-    void updateBackstagePass_SellInIsAboveTen_QualityIncrementsOne() {
-        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 20, 10);
-
-        testUpdateQualitySingleItem(item, 19, 11);
-    }
-
-    @Test
-    void updateBackstagePass_SellInIsBelowTenAndAboveFive_QualityIncrementsTwo() {
-        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 7, 10);
-
-        testUpdateQualitySingleItem(item, 6, 12);
-    }
-
-    @Test
-    void updateBackstagePass_SellInIsBelowFiveAndAboveZero_QualityIncrementsThree() {
-        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 3, 10);
-
-        testUpdateQualitySingleItem(item, 2, 13);
     }
 
     @Test
@@ -70,13 +28,6 @@ class GildedRoseTest {
     }
 
     @Test
-    void updateBackstagePass_SellInIsZero_QualityIsZero() {
-        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10);
-
-        testUpdateQualitySingleItem(item, -1, 0);
-    }
-
-    @Test
     void updateBackstagePass_SellInIsZero_QualityDoesNotDecreaseBellowZero() {
         Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 0);
 
@@ -84,31 +35,10 @@ class GildedRoseTest {
     }
 
     @Test
-    void updateSulfuras_QualityAndSellInDoesNotChange() {
-        Item item = new Item("Sulfuras, Hand of Ragnaros", 1, 80);
-
-        testUpdateQualitySingleItem(item, 1, 80);
-    }
-
-    @Test
     void updateConjured_QualityIsZero_QualityDoesNotDecreaseBellowZero() {
         Item item = new Item("Conjured Mana Cake", 0, 0);
 
         testUpdateQualitySingleItem(item, -1, 0);
-    }
-
-    @Test
-    void updateConjured_SellInIsAboveZero_QualityDecrementsTwo() {
-        Item item = new Item("Conjured Mana Cake", 1, 10);
-
-        testUpdateQualitySingleItem(item, 0, 8);
-    }
-
-    @Test
-    void updateConjured_SellInIsZeroOrBellow_QualityDecrementsFour() {
-        Item item = new Item("Conjured Mana Cake", 0, 10);
-
-        testUpdateQualitySingleItem(item, -1, 6);
     }
 
     private void testUpdateQualitySingleItem(Item item, int expectedSellIn, int expectedQuality) {
