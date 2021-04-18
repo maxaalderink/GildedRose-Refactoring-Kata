@@ -14,11 +14,10 @@ class GildedRose {
         for (Item item : items) {
             final ItemWrapper itemWrapper = ItemWrapperFactory.create(item);
 
-            if (itemWrapper.getSellInUpdateBehaviour() == SellInUpdateBehaviour.DEFAULT_DECREASING) {
-                itemWrapper.setSellIn(itemWrapper.getSellIn() + getSellInDeltaDefault());
-            }
+            final int sellInDelta = SellInDeltaProvider.getSellInDelta(itemWrapper);
+            itemWrapper.setSellIn(itemWrapper.getSellIn() + sellInDelta);
 
-            int qualityDelta = QualityDeltaProvider.getQualityDelta(itemWrapper);
+            final int qualityDelta = QualityDeltaProvider.getQualityDelta(itemWrapper);
             if (qualityDelta > 0) {
                 itemWrapper.setQuality(Math.min(MAXIMUM_QUALITY, itemWrapper.getQuality() + qualityDelta));
             }
@@ -27,9 +26,4 @@ class GildedRose {
             }
         }
     }
-
-    private int getSellInDeltaDefault() {
-        return -1;
-    }
-
 }
