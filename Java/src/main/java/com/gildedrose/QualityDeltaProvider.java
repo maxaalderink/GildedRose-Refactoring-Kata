@@ -10,7 +10,7 @@ public class QualityDeltaProvider {
             case INCREASING:
                 return getQualityDeltaIncreasing();
             case INCREASING_UNTIL_SELL_IN:
-                return getQualityDeltaIncreasingUntillSellIn(itemWrapper);
+                return getQualityDeltaIncreasingUntilSellIn(itemWrapper);
             case STATIC:
                 return getQualityDeltaStatic();
             case DECREASING_DOUBLE_RATE:
@@ -34,7 +34,7 @@ public class QualityDeltaProvider {
         return 1;
     }
 
-    private static int getQualityDeltaIncreasingUntillSellIn(ItemWrapper itemWrapper) {
+    private static int getQualityDeltaIncreasingUntilSellIn(ItemWrapper itemWrapper) {
         if (itemWrapper.getSellIn() > TEN_DAYS_LEFT) {
             return 1;
         } else if (itemWrapper.getSellIn() > FIVE_DAYS_LEFT) {
